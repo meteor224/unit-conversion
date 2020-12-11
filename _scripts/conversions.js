@@ -1,21 +1,20 @@
-$(function() {
-	errorMessage1 = 'Please enter a value';
- 	errorMessage2 = 'Please enter a positive numeric value';
-	
- 	// Numeric regex
-	regexNumeric = /^[0-9.]+$/;
+var errorMessage1 = 'Please enter a value';
+	var errorMessage2 = 'Please enter a positive numeric value';
+	 
+	// Numeric regex
+	var regexNumeric = /^[0-9.]+$/;
 	
 	// Numeric regex that includes '-' symbol to validate for a negative number
-	regexNumericMinus = /^[0-9.-]+$/;
+	var regexNumericMinus = /^[0-9.-]+$/;
 
 	// Hide all result divs
-	$('#lResult,#wResult,#tResult,#aResult,#cResult,#vResult').hide();
+	clearValues()
  
 	function convertValues(u) {
-  		l = $('#'+u+'Amount').val();
- 		x = $('#'+u+'Unit1').val();
-  		y = $('#'+u+'Unit2').val();
-  		d = $('#decimals').val();
+		l = document.getElementById(u+"Amount").value;
+		x = document.getElementById(u+'Unit1').value;
+		y = document.getElementById(u+'Unit2').value;
+		d = document.getElementById('decimals').value;
   
 		if (l=='') {
 			alert(errorMessage1);
@@ -33,35 +32,46 @@ $(function() {
 			case 'v': unitArray=[5.91939047, 4.92892159, 17.7581714, 14.7867648, 28.4130742, 29.5735296, 250, 236.588237, 568.261485, 473.176473, 1136.52297, 946.352946, 4546.09188, 3785.41178, 1, 1000]; break;
 			default: break;
 		}
-   		conversion=unitArray[x]/unitArray[y];
-   		result=(l*conversion).toFixed(d);
-  		$('#'+u+'Result').show();
-   		$('#'+u+'Result').text(l+' '+$('#'+u+'Unit1 :selected').text()+' = '+result+' '+$('#'+u+'Unit2 :selected').text());
-  		}
+   			conversion=unitArray[x]/unitArray[y];
+   			result=(l*conversion).toFixed(d);
+			
+			var unit1 = document.getElementById(u+'Unit1');
+			var unit2 = document.getElementById(u+'Unit2');
+			var unit1Text = unit1.options[unit1.selectedIndex].text;
+			var unit2Text = unit2.options[unit2.selectedIndex].text;
+
+			document.getElementById(u+'Result').innerHTML = l + " " + unit1Text +' = '+result+' '+ unit2Text;
+			document.getElementById(u+'Result').style.display = "block";
+		}
 	}
-	function clearValues(x) {
-		$('#'+x+'Result').hide(); $('#'+x+'Amount').val('');
+	function clearValues() { 
+		document.getElementById("lResult").style.display = "none";
+		document.getElementById("wResult").style.display = "none";
+		document.getElementById("tResult").style.display = "none";
+		document.getElementById("aResult").style.display = "none";
+		document.getElementById("cResult").style.display = "none";
+		document.getElementById("vResult").style.display = "none";
 	}
-	$("#lConvert").click(function() {
-		convertValues('l');
-	});
-	$("#wConvert").click(function() {
-		convertValues('w');
-	});
-	$("#aConvert").click(function() {
-		convertValues('a');
-	});
-	$("#cConvert").click(function() {
-		convertValues('c');
-	});
-	$("#vConvert").click(function() {
-		convertValues('v');
-	});
-	$("#tConvert").click(function() {
-		l = $('#tAmount').val();
-		x = $('#tUnit1').val();
-		y = $('#tUnit2').val();
-		d = $('#decimals').val();
+	document.getElementById("lConvert").onclick = function() {
+		convertValues('l')
+	};
+	document.getElementById("wConvert").onclick = function() {
+		convertValues('w')
+	};
+	document.getElementById("aConvert").onclick = function() {
+		convertValues('a')
+	};
+	document.getElementById("cConvert").onclick = function() {
+		convertValues('c')
+	};
+	document.getElementById("vConvert").onclick = function() {
+		convertValues('v')
+	};
+	document.getElementById("tConvert").onclick = function() {
+		l = document.getElementById("tAmount").value;
+		x = document.getElementById('tUnit1').value;
+		y = document.getElementById('tUnit2').value;
+		d = document.getElementById('decimals').value;
 		result = 0;
 	  
 		if (l=='') {
@@ -85,26 +95,31 @@ $(function() {
 				result=l;
 			}
 			result=result.toFixed(d);
-			$('#tResult').show();
-			$("#tResult").text(l+' '+$("#tUnit1 :selected").text()+' = '+result+' '+$("#tUnit2 :selected").text());
+
+			var unit1 = document.getElementById('tUnit1');
+			var unit2 = document.getElementById('tUnit2');
+			var unit1Text = unit1.options[unit1.selectedIndex].text;
+			var unit2Text = unit2.options[unit2.selectedIndex].text;
+
+			document.getElementById('tResult').innerHTML = l + " " + unit1Text +' = '+result+' '+ unit2Text;
+			document.getElementById('tResult').style.display = "block";
 		}
-	});
-	$("#lClear").click(function() {
-		clearValues('l');
-	});
-	$("#wClear").click(function() {
-		clearValues('w');
-	});
-	$("#tClear").click(function() {
-		clearValues('t');
-	});
-	$("#aClear").click(function() {
-		clearValues('a');
-	});
-	$("#cClear").click(function() {
-		clearValues('c');
-	});
-	$("#vClear").click(function() {
-		clearValues('v');
-	});
-});
+	};
+	document.getElementById("lClear").onclick = function() {
+		clearValues();
+	};
+	document.getElementById("wClear").onclick = function() {
+		clearValues();
+	};
+	document.getElementById("tClear").onclick = function() {
+		clearValues();
+	};
+	document.getElementById("aClear").onclick = function() {
+		clearValues();
+	};
+	document.getElementById("cClear").onclick = function() {
+		clearValues();
+	};
+	document.getElementById("vClear").onclick = function() {
+		clearValues();
+	};
