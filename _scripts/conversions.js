@@ -1,125 +1,108 @@
-var errorMessage1 = 'Please enter a value';
-	var errorMessage2 = 'Please enter a positive numeric value';
-	 
-	// Numeric regex
-	var regexNumeric = /^[0-9.]+$/;
-	
-	// Numeric regex that includes '-' symbol to validate for a negative number
-	var regexNumericMinus = /^[0-9.-]+$/;
+function unitConversion(unit) {
+  var unitValue = document.getElementById(unit+"-amount").value;
+  var unit1Option = document.getElementById(unit+'-unit-1');
+  var unit2Option = document.getElementById(unit+'-unit-2');
+  var unit1 = unit1Option.value;
+  var unit2 = unit2Option.value;
+  var decimalPoints = document.getElementById('decimals').value;
+  var regexNumericMinus = /^[0-9.-]+$/;
+  // length conversion factors to millimetres
+  var inch = 25.4;
+  var foot = 304.8;
+  var yard = 914.4;
+  var mile = 1609344;
+  var millimetre = 1;
+  var centimetre = 10;
+  var metre = 1000;
+  var kilometre = 1000000;
+  // weight conversion factors to grams
+  var ounce = 28.3495231;
+  var pound = 453.59237;
+  var stone = 6350.29318;
+  var ukTon = 1016046.91;
+  var usTon = 907184.74;
+  var gram = 1;
+  var kilo = 1000;
+  var metricTon = 1000000;
+  // square area conversion factors to millimetres
+  var acres = 40468564.2;
+  var squareMile = 25899881103.36;
+  var squareYard = 8361.2736;
+  var squareFeet = 929.0304;
+  var squareInche = 6.4516;
+  var hectare = 100000000;
+  var squareKilometre = 10000000000;
+  var squareMetre = 10000;
+  var squareCentimetre = 1;
+  // cubic area conversion factors to millimetres
+  var cubicFoot = 28316.8466;
+  var cubicYard = 764554.858;
+  var cubicMetre = 1000000;
+  // volume conversion factors to millilitres
+  var ukTeaspoon = 5.91939047;
+  var usTeaspoon = 4.92892159;
+  var ukTablespoon = 17.7581714;
+  var usTablespoon = 14.7867648;
+  var ukFluidOunce = 28.4130742;
+  var usFluidOunce = 29.5735296;
+  var ukCup = 250;
+  var usCup = 236.588237;
+  var ukPint = 568.261485;
+  var usPint = 473.176473;
+  var ukQuart = 1136.52297;
+  var usQuart = 946.352946;
+  var ukGallon = 4546.09188;
+  var usGallon = 3785.41178;
+  var millilitre = 1;
+  var litre = 1000;
 
-	// Hide all result divs
-	clearValues()
- 
-	function convertValues(u) {
-		l = document.getElementById(u+"Amount").value;
-		x = document.getElementById(u+'Unit1').value;
-		y = document.getElementById(u+'Unit2').value;
-		d = document.getElementById('decimals').value;
-  
-		if (l=='') {
-			alert(errorMessage1);
-		} else if (!regexNumeric.test(l)) {
-			alert(errorMessage2);
-		} else {
-		   	switch(u) {
-			// 25.4 unit is inches which is 1 metric (cm) inch (2.54) x 10
-			// 304.8 unit is feet which is 1 metric (cm) foot (30.48) x 10
-			// 914.4 unit is yards which is 1 metric (cm) yard (91.44) x 10 
-			case 'l': unitArray=[25.4, 304.8, 914.4, 1609344, 1, 10, 1000, 1000000]; break;
-			case 'w': unitArray=[28.3495231, 453.59237, 6350.29318, 1016046.91, 907184.74, 1, 1000, 1000000]; break;
-			case 'a': unitArray=[40468564.2, 25899881103.36, 8361.2736, 929.0304, 6.4516, 100000000, 10000000000, 10000, 1]; break;
-			case 'c': unitArray=[28316.8466, 764554.858, 1000000]; break;
-			case 'v': unitArray=[5.91939047, 4.92892159, 17.7581714, 14.7867648, 28.4130742, 29.5735296, 250, 236.588237, 568.261485, 473.176473, 1136.52297, 946.352946, 4546.09188, 3785.41178, 1, 1000]; break;
-			default: break;
-		}
-   			conversion=unitArray[x]/unitArray[y];
-   			result=(l*conversion).toFixed(d);
-			
-			var unit1 = document.getElementById(u+'Unit1');
-			var unit2 = document.getElementById(u+'Unit2');
-			var unit1Text = unit1.options[unit1.selectedIndex].text;
-			var unit2Text = unit2.options[unit2.selectedIndex].text;
+  if (unitValue.length == 0 || unitValue < 0 || isNaN(unitValue)) {
+    alert('Please enter a positive number');
+  } else {
+    if (unit == "temperature") {
+      if (unit1==1 && unit2==2) {
+        result=(unitValue-32)/1.8;
+      } else if (unit1==1 && unit2==3) {
+        result=(0.55555*(unitValue-32)+273.15);
+      } else if (unit1==2 && unit2==1) {
+        result=(unitValue*1.8)+32;
+      } else if (unit1==2 && unit2==3) {
+        result=(unitValue*1)+273.15;
+      } else if (unit1==3 && unit2==1) {
+        result=((unitValue-273.15)*1.8)+32;
+      } else if (unit1==3 && unit2==2) {
+        result=(unitValue*1)-273.15;
+      } else {
+        result=unitValue;
+      }
 
-			document.getElementById(u+'Result').innerHTML = l + " " + unit1Text +' = '+result+' '+ unit2Text;
-			document.getElementById(u+'Result').style.display = "block";
-		}
-	}
-	function clearValues() { 
-		document.getElementById("lResult").style.display = "none";
-		document.getElementById("wResult").style.display = "none";
-		document.getElementById("tResult").style.display = "none";
-		document.getElementById("aResult").style.display = "none";
-		document.getElementById("cResult").style.display = "none";
-		document.getElementById("vResult").style.display = "none";
-	}
-	document.getElementById("lConvert").onclick = function() {
-		convertValues('l')
-	};
-	document.getElementById("wConvert").onclick = function() {
-		convertValues('w')
-	};
-	document.getElementById("aConvert").onclick = function() {
-		convertValues('a')
-	};
-	document.getElementById("cConvert").onclick = function() {
-		convertValues('c')
-	};
-	document.getElementById("vConvert").onclick = function() {
-		convertValues('v')
-	};
-	document.getElementById("tConvert").onclick = function() {
-		l = document.getElementById("tAmount").value;
-		x = document.getElementById('tUnit1').value;
-		y = document.getElementById('tUnit2').value;
-		d = document.getElementById('decimals').value;
-		result = 0;
-	  
-		if (l=='') {
-			alert(errorMessage1);
-		} else if (!regexNumericMinus.test(l)) {
-			alert(errorMessage2);
-		} else {
-			if (x==1 && y==2) {
-				result=(l-32)/1.8;
-			} else if (x==1 && y==3) {
-				result=(0.55555*(l-32)+273.15);
-			} else if (x==2 && y==1) {
-				result=(l*1.8)+32;
-			} else if (x==2 && y==3) {
-				result=(l*1)+273.15;
-			} else if (x==3 && y==1) {
-				result=((l-273.15)*1.8)+32;
-			} else if (x==3 && y==2) {
-				result=(l*1)-273.15;
-			} else {
-				result=l;
-			}
-			result=result.toFixed(d);
+      result=result.toFixed(decimalPoints);
+      document.getElementById(unit + '-result').innerHTML = unitValue + " " + unit1Option.options[unit1Option.selectedIndex].text + ' = ' + result + ' ' + unit2Option.options[unit2Option.selectedIndex].text;
+      document.getElementById(unit + '-result').style.display = "block";
+    
+    } else {
+      switch(unit) {
+        case 'length': unitArray = [inch, foot, yard, mile, millimetre, centimetre, metre, kilometre]; break;
+        case 'weight': unitArray=[ounce, pound, stone, ukTon, usTon, gram, kilo, metricTon]; break;
+        case 'square-area': unitArray=[acres, squareMile, squareYard, squareFeet, squareInche, hectare, squareKilometre, squareMetre, squareCentimetre]; break;
+        case 'cubic-area': unitArray=[cubicFoot, cubicYard, cubicMetre]; break;
+        case 'volume': unitArray=[ukTeaspoon, usTeaspoon, ukTablespoon, usTablespoon, ukFluidOunce, usFluidOunce, ukCup, usCup, ukPint, usPint, ukQuart, usQuart, ukGallon, usGallon, millilitre, litre]; break;
+        default: break;
+      };
 
-			var unit1 = document.getElementById('tUnit1');
-			var unit2 = document.getElementById('tUnit2');
-			var unit1Text = unit1.options[unit1.selectedIndex].text;
-			var unit2Text = unit2.options[unit2.selectedIndex].text;
+      conversion = unitArray[unit1] / unitArray[unit2];
+      result = (unitValue * conversion).toFixed(decimalPoints);
+      document.getElementById(unit + '-result').innerHTML = unitValue + " " + unit1Option.options[unit1Option.selectedIndex].text + ' = ' + result + ' ' + unit2Option.options[unit2Option.selectedIndex].text;
+      document.getElementById(unit + '-result').style.display = "block";
+    };
+  };
+};
 
-			document.getElementById('tResult').innerHTML = l + " " + unit1Text +' = '+result+' '+ unit2Text;
-			document.getElementById('tResult').style.display = "block";
-		}
-	};
-	document.getElementById("lClear").onclick = function() {
-		clearValues();
-	};
-	document.getElementById("wClear").onclick = function() {
-		clearValues();
-	};
-	document.getElementById("tClear").onclick = function() {
-		clearValues();
-	};
-	document.getElementById("aClear").onclick = function() {
-		clearValues();
-	};
-	document.getElementById("cClear").onclick = function() {
-		clearValues();
-	};
-	document.getElementById("vClear").onclick = function() {
-		clearValues();
-	};
+function clearValues() { 
+  document.getElementById("length-result").style.display = "none";
+  document.getElementById("weight-result").style.display = "none";
+  document.getElementById("temperature-result").style.display = "none";
+  document.getElementById("square-area-result").style.display = "none";
+  document.getElementById("cubic-area-result").style.display = "none";
+  document.getElementById("volume-result").style.display = "none";
+};

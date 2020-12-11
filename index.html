@@ -1,193 +1,188 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title>Unit Conversion App</title>
     </head>
     <body>
         <h1>Unit Conversion App</h1>
-<div id="rightWrapper">
-    <div class="whiteContentPanel">
-    <div class="conversions">
-    <p><strong>Below are various conversion utilities to convert units of length, weight, temperature, area and volume between the most common imperial and metric units.</strong> To adjust the accuracy of results, set the number of decimal places under 'Options'. This will adjust the number of decimal places for all results. </p>
         <h2>Options</h2>
-<div class="panel">
-No. decimal places:
-<select class="textBox" id="decimals">
-<option value="0">0</option>
-<option value="1">1</option>
-<option value="2" selected="selected">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10</option>
-</select>
-</div>
-<h2>Length Conversion</h2>
-<div class="panel">
-Convert <input type="text" class="textBox" id="lAmount" size="10">
-<select class="textBox" id="lUnit1">
-<option value="0">Inches (in)</option>
-<option value="1">Feet (ft)</option>
-<option value="2">Yards (yd)</option>
-<option value="3">Miles</option>
-<option value="4">Millimetres (mm)</option>
-<option value="5">Centimetres (cm)</option>
-<option value="6">Metres (m)</option>
-<option value="7">Kilometres (km)</option>
-</select>
-to 
-<select class="textBox" id="lUnit2">
-<option value="4">Millimetres (mm)</option>
-<option value="5">Centimetres (cm)</option>
-<option value="6">Metres (m)</option>
-<option value="7">Kilometres (km)</option>
-<option value="0">Inches (in)</option>
-<option value="1">Feet (ft)</option>
-<option value="2">Yards (yd)</option>
-<option value="3">Miles</option>
-</select>
-<button class="greenPushButton" id="lConvert">Convert</button> <button class="greyPushButton" id="lClear">Clear</button>
-<div id="lResult" style="display: block;"></div>
-</div>
-<h2>Weight Conversion</h2>
-<div class="panel">
-Convert <input class="textBox" id="wAmount" type="text" size="10">
-<select class="textBox" id="wUnit1">
-<option value="0">Ounces (oz)</option>
-<option value="1">Pounds (lb)</option>
-<option value="2">Stone</option>
-<option value="3">UK Tons</option>
-<option value="4">US Tons</option>
-<option value="5">Grams (g)</option>
-<option value="6">Kilos (kg)</option>
-<option value="7">Metric Tons</option>
-</select>
-to 
-<select class="textBox" id="wUnit2">
-<option value="5">Grams (g)</option>
-<option value="6">Kilos (kg)</option>
-<option value="7">Metric Tons</option>
-<option value="0">Ounces (oz)</option>
-<option value="1">Pounds (lb)</option>
-<option value="2">Stone</option>
-<option value="3">UK Tons</option>
-<option value="4">US Tons</option>
-</select>
-<button class="greenPushButton" id="wConvert">Convert</button> <button class="greyPushButton" id="wClear">Clear</button>
-<div id="wResult" style="display: none;"></div>
-</div>
-<h2>Temperature Conversion</h2>
-<div class="panel">
-Convert <input class="textBox" id="tAmount" type="text" size="10">
-<select class="textBox" id="tUnit1">
-<option value="2">Celsius (°C)</option>
-<option value="1">Fahrenheit (°F)</option>
-<option value="3">Kelvin (K)</option>
-</select>
-to 
-<select class="textBox" id="tUnit2">
-<option value="1">Fahrenheit (°F)</option>
-<option value="2">Celsius (°C)</option>
-<option value="3">Kelvin (K)</option>
-</select>
-<button class="greenPushButton" id="tConvert">Convert</button> <button class="greyPushButton" id="tClear">Clear</button>
-<div id="tResult" style="display: none;"></div>
-</div>
-<h2>Area Conversion (Square)</h2>
-<div class="panel">
-Convert <input class="textBox" id="aAmount" type="text" size="10">
-<select class="textBox" id="aUnit1">
-<option value="0">Acres (ac)</option>
-<option value="1">Square Miles</option>
-<option value="2">Square Yards (sq yd)</option>
-<option value="3">Square Feet (sq ft)</option>
-<option value="4">Square Inches (sq in)</option>
-<option value="5">Hectares (ha)</option>
-<option value="6">Square Kilometre (km²)</option>
-<option value="7">Square Metres (m²)</option>
-<option value="8">Square Centimetres (cm²)</option>
-</select>
-to 
-<select class="textBox" id="aUnit2">
-<option value="5">Hectares (ha)</option>
-<option value="6">Square Kilometre (km²)</option>
-<option value="7">Square Metres (m²)</option>
-<option value="8">Square Centimetres (cm²)</option>
-<option value="0">Acres (ac)</option>
-<option value="1">Square Miles</option>
-<option value="2">Square Yards (sq yd)</option>
-<option value="3">Square Feet (sq ft)</option>
-<option value="4">Square Inches (sq in)</option>
-</select>
-<button class="greenPushButton" id="aConvert">Convert</button> <button class="greyPushButton" id="aClear">Clear</button>
-<div id="aResult" style="display: none;"></div>
-</div>
-<h2>Area Conversion (Cubic)</h2>
-<div class="panel">
-Convert <input class="textBox" id="cAmount" type="text" size="10">
-<select class="textBox" id="cUnit1">
-<option value="0">Cubic Foot</option>
-<option value="1">Cubic Yard</option>
-<option value="2">Cubic Metre</option>
-</select>
-to 
-<select class="textBox" id="cUnit2">
-<option value="2">Cubic Metre</option>
-<option value="0">Cubic Foot</option>
-<option value="1">Cubic Yard</option>
-</select>
-<button class="greenPushButton" id="cConvert">Convert</button> <button class="greyPushButton" id="cClear">Clear</button>
-<div id="cResult" style="display: none;"></div>
-</div>
-<h2>Volume Conversion</h2>
-<div class="panel">
-Convert <input class="textBox" id="vAmount" type="text" size="10">
-<select class="textBox" id="vUnit1">
-<option value="0">UK Teaspoons (tsp)</option>
-<option value="1">US Teaspoons (tsp)</option>
-<option value="2">UK Tablespoons (tbsp)</option>
-<option value="3">US Tablespoons (tbsp)</option>
-<option value="4">UK Fluid Ounces (fl oz)</option>
-<option value="5">US Fluid Ounces (fl oz)</option>
-<option value="6">UK Cups (c)</option>
-<option value="7">US Cups (c)</option>
-<option value="8">UK Pints (pt)</option>
-<option value="9">US Pints (pt)</option>
-<option value="10">UK Quarts (qt)</option>
-<option value="11">US Quarts (qt)</option>
-<option value="12">UK Gallons (gal)</option>
-<option value="13">US Gallons (gal)</option>
-<option value="14">Millilitres (ml)</option>
-<option value="15">Litres (l)</option>
-</select>
-to 
-<select class="textBox" id="vUnit2">
-<option value="14">Millilitres (ml)</option>
-<option value="15">Litres (l)</option>
-<option value="0">UK Teaspoons (tsp)</option>
-<option value="1">US Teaspoons (tsp)</option>
-<option value="2">UK Tablespoons (tbsp)</option>
-<option value="3">US Tablespoons (tbsp)</option>
-<option value="4">UK Fluid Ounces (fl oz)</option>
-<option value="5">US Fluid Ounces (fl oz)</option>
-<option value="6">UK Cups (c)</option>
-<option value="7">US Cups (c)</option>
-<option value="8">UK Pints (pt)</option>
-<option value="9">US Pints (pt)</option>
-<option value="10">UK Quarts (qt)</option>
-<option value="11">US Quarts (qt)</option>
-<option value="12">UK Gallons (gal)</option>
-<option value="13">US Gallons (gal)</option>
-
-</select>
-<button class="greenPushButton" id="vConvert">Convert</button> <button class="greyPushButton" id="vClear">Clear</button>
-<div id="vResult" style="display: none;"></div>
-</div></div>
-     </div>
-</div>
-<script type="text/javascript" src="_scripts/conversions.js"></script>
+        <div>
+            No. decimal places:
+            <select id="decimals">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2" selected="selected">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+        <h2>Length Conversion</h2>
+        <div>
+            Convert <input id="length-amount" min="0" type="number" size="10">
+            <select id="length-unit-1">
+                <option value="0">Inches (in)</option>
+                <option value="1">Feet (ft)</option>
+                <option value="2">Yards (yd)</option>
+                <option value="3">Miles</option>
+                <option value="4">Millimetres (mm)</option>
+                <option value="5">Centimetres (cm)</option>
+                <option value="6">Metres (m)</option>
+                <option value="7">Kilometres (km)</option>
+            </select>
+            to 
+            <select id="length-unit-2">
+                <option value="4">Millimetres (mm)</option>
+                <option value="5">Centimetres (cm)</option>
+                <option value="6">Metres (m)</option>
+                <option value="7">Kilometres (km)</option>
+                <option value="0">Inches (in)</option>
+                <option value="1">Feet (ft)</option>
+                <option value="2">Yards (yd)</option>
+                <option value="3">Miles</option>
+            </select>
+            <button id="length-convert" onclick="unitConversion('length');">Convert</button>
+            <div id="length-result" style="display: block;"></div>
+        </div>
+        <h2>Weight Conversion</h2>
+        <div>
+            Convert <input id="weight-amount" min="0" type="number" size="10">
+            <select id="weight-unit-1">
+                <option value="0">Ounces (oz)</option>
+                <option value="1">Pounds (lb)</option>
+                <option value="2">Stone</option>
+                <option value="3">UK Tons</option>
+                <option value="4">US Tons</option>
+                <option value="5">Grams (g)</option>
+                <option value="6">Kilos (kg)</option>
+                <option value="7">Metric Tons</option>
+            </select>
+            to 
+            <select id="weight-unit-2">
+                <option value="5">Grams (g)</option>
+                <option value="6">Kilos (kg)</option>
+                <option value="7">Metric Tons</option>
+                <option value="0">Ounces (oz)</option>
+                <option value="1">Pounds (lb)</option>
+                <option value="2">Stone</option>
+                <option value="3">UK Tons</option>
+                <option value="4">US Tons</option>
+            </select>
+            <button id="weight-convert" onclick="unitConversion('weight');">Convert</button>
+            <div id="weight-result" style="display: none;"></div>
+        </div>
+        <h2>Temperature Conversion</h2>
+        <div>
+            Convert <input id="temperature-amount" type="text" size="10">
+            <select id="temperature-unit-1">
+                <option value="2">Celsius (°C)</option>
+                <option value="1">Fahrenheit (°F)</option>
+                <option value="3">Kelvin (K)</option>
+            </select>
+            to 
+            <select id="temperature-unit-2">
+                <option value="1">Fahrenheit (°F)</option>
+                <option value="2">Celsius (°C)</option>
+                <option value="3">Kelvin (K)</option>
+            </select>
+            <button id="temperature-convert" onclick="unitConversion('temperature');">Convert</button>
+            <div id="temperature-result" style="display: none;"></div>
+        </div>
+        <h2>Area Conversion (Square)</h2>
+        <div>
+            Convert <input id="square-area-amount" min="0" type="number" size="10">
+            <select id="square-area-unit-1">
+                <option value="0">Acres (ac)</option>
+                <option value="1">Square Miles</option>
+                <option value="2">Square Yards (sq yd)</option>
+                <option value="3">Square Feet (sq ft)</option>
+                <option value="4">Square Inches (sq in)</option>
+                <option value="5">Hectares (ha)</option>
+                <option value="6">Square Kilometre (km²)</option>
+                <option value="7">Square Metres (m²)</option>
+                <option value="8">Square Centimetres (cm²)</option>
+            </select>
+            to 
+            <select id="square-area-unit-2">
+                <option value="5">Hectares (ha)</option>
+                <option value="6">Square Kilometre (km²)</option>
+                <option value="7">Square Metres (m²)</option>
+                <option value="8">Square Centimetres (cm²)</option>
+                <option value="0">Acres (ac)</option>
+                <option value="1">Square Miles</option>
+                <option value="2">Square Yards (sq yd)</option>
+                <option value="3">Square Feet (sq ft)</option>
+                <option value="4">Square Inches (sq in)</option>
+            </select>
+            <button id="square-area-convert" onclick="unitConversion('square-area');">Convert</button>
+            <div id="square-area-result" style="display: none;"></div>
+        </div>
+        <h2>Area Conversion (Cubic)</h2>
+        <div>
+            Convert <input id="cubic-area-amount" min="0" type="number" size="10">
+            <select id="cubic-area-unit-1">
+                <option value="0">Cubic Foot</option>
+                <option value="1">Cubic Yard</option>
+                <option value="2">Cubic Metre</option>
+            </select>
+            to 
+            <select id="cubic-area-unit-2">
+                <option value="2">Cubic Metre</option>
+                <option value="0">Cubic Foot</option>
+                <option value="1">Cubic Yard</option>
+            </select>
+            <button id="cubic-area-convert" onclick="unitConversion('cubic-area');">Convert</button>
+            <div id="cubic-area-result" style="display: none;"></div>
+        </div>
+        <h2>Volume Conversion</h2>
+        <div>
+            Convert <input id="volume-amount" min="0" type="number" size="10">
+            <select id="volume-unit-1">
+                <option value="0">UK Teaspoons (tsp)</option>
+                <option value="1">US Teaspoons (tsp)</option>
+                <option value="2">UK Tablespoons (tbsp)</option>
+                <option value="3">US Tablespoons (tbsp)</option>
+                <option value="4">UK Fluid Ounces (fl oz)</option>
+                <option value="5">US Fluid Ounces (fl oz)</option>
+                <option value="6">UK Cups (c)</option>
+                <option value="7">US Cups (c)</option>
+                <option value="8">UK Pints (pt)</option>
+                <option value="9">US Pints (pt)</option>
+                <option value="10">UK Quarts (qt)</option>
+                <option value="11">US Quarts (qt)</option>
+                <option value="12">UK Gallons (gal)</option>
+                <option value="13">US Gallons (gal)</option>
+                <option value="14">Millilitres (ml)</option>
+                <option value="15">Litres (l)</option>
+            </select>
+            to 
+            <select id="volume-unit-2">
+                <option value="14">Millilitres (ml)</option>
+                <option value="15">Litres (l)</option>
+                <option value="0">UK Teaspoons (tsp)</option>
+                <option value="1">US Teaspoons (tsp)</option>
+                <option value="2">UK Tablespoons (tbsp)</option>
+                <option value="3">US Tablespoons (tbsp)</option>
+                <option value="4">UK Fluid Ounces (fl oz)</option>
+                <option value="5">US Fluid Ounces (fl oz)</option>
+                <option value="6">UK Cups (c)</option>
+                <option value="7">US Cups (c)</option>
+                <option value="8">UK Pints (pt)</option>
+                <option value="9">US Pints (pt)</option>
+                <option value="10">UK Quarts (qt)</option>
+                <option value="11">US Quarts (qt)</option>
+                <option value="12">UK Gallons (gal)</option>
+                <option value="13">US Gallons (gal)</option>
+            </select>
+            <button id="volume-convert" onclick="unitConversion('volume');">Convert</button>
+            <div id="volume-result" style="display: none;"></div>
+        </div>
+        <button onclick="clearValues();">Clear All</button>
+        <script src="_scripts/conversions.js"></script>
     </body>
 </html>
