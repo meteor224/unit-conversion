@@ -1,11 +1,10 @@
 function unitConversion(unit) {
-  var unitValue = document.getElementById(unit+"-amount").value;
-  var unit1Option = document.getElementById(unit+'-unit-1');
-  var unit2Option = document.getElementById(unit+'-unit-2');
+  var unitValue = parseInt(document.getElementById(unit + '-amount').value);
+  var unit1Option = document.getElementById(unit + '-unit-1');
+  var unit2Option = document.getElementById(unit + '-unit-2');
   var unit1 = unit1Option.value;
   var unit2 = unit2Option.value;
-  var decimalPoints = document.getElementById('decimals').value;
-  var regexNumericMinus = /^[0-9.-]+$/;
+  var decimalPoints = parseInt(document.getElementById('decimals').value);
   // length conversion factors to millimetres
   var inch = 25.4;
   var foot = 304.8;
@@ -56,29 +55,31 @@ function unitConversion(unit) {
   var millilitre = 1;
   var litre = 1000;
 
-  if (unitValue.length == 0 || unitValue < 0 || isNaN(unitValue)) {
-    alert('Please enter a positive number');
+  if (unitValue.length == 0 || isNaN(unitValue)) {
+    alert('Please enter a number');
   } else {
-    if (unit == "temperature") {
-      if (unit1==1 && unit2==2) {
-        result=(unitValue-32)/1.8;
-      } else if (unit1==1 && unit2==3) {
-        result=(0.55555*(unitValue-32)+273.15);
-      } else if (unit1==2 && unit2==1) {
-        result=(unitValue*1.8)+32;
-      } else if (unit1==2 && unit2==3) {
-        result=(unitValue*1)+273.15;
-      } else if (unit1==3 && unit2==1) {
-        result=((unitValue-273.15)*1.8)+32;
-      } else if (unit1==3 && unit2==2) {
-        result=(unitValue*1)-273.15;
+    if (unit == 'temperature') {
+      if (unit1 == 1 && unit2 == 2) {
+        result = (unitValue - 32) / 1.8;
+      } else if (unit1 == 1 && unit2 == 3) {
+        result = (0.55555 * (unitValue - 32) + 273.15);
+      } else if (unit1 == 2 && unit2 == 1) {
+        result = (unitValue * 1.8) + 32;
+      } else if (unit1 == 2 && unit2 == 3) {
+        result = (unitValue * 1) + 273.15;
+      } else if (unit1 == 3 && unit2 == 1) {
+        result = ((unitValue-273.15) * 1.8) + 32;
+      } else if (unit1 == 3 && unit2 == 2) {
+        result = (unitValue * 1) - 273.15;
+      } else if (unit1 == unit2) {
+        result = unitValue;
       } else {
-        result=unitValue;
+        result = unitValue;
       }
 
-      result=result.toFixed(decimalPoints);
-      document.getElementById(unit + '-result').innerHTML = unitValue + " " + unit1Option.options[unit1Option.selectedIndex].text + ' = ' + result + ' ' + unit2Option.options[unit2Option.selectedIndex].text;
-      document.getElementById(unit + '-result').style.display = "block";
+      result = result.toFixed(decimalPoints);
+      document.getElementById(unit + '-result').innerHTML = unitValue + ' ' + unit1Option.options[unit1Option.selectedIndex].text + ' = ' + result + ' ' + unit2Option.options[unit2Option.selectedIndex].text;
+      document.getElementById(unit + '-result').style.display = 'block';
     
     } else {
       switch(unit) {
@@ -92,17 +93,8 @@ function unitConversion(unit) {
 
       conversion = unitArray[unit1] / unitArray[unit2];
       result = (unitValue * conversion).toFixed(decimalPoints);
-      document.getElementById(unit + '-result').innerHTML = unitValue + " " + unit1Option.options[unit1Option.selectedIndex].text + ' = ' + result + ' ' + unit2Option.options[unit2Option.selectedIndex].text;
-      document.getElementById(unit + '-result').style.display = "block";
+      document.getElementById(unit + '-result').innerHTML = unitValue + ' ' + unit1Option.options[unit1Option.selectedIndex].text + ' = ' + result + ' ' + unit2Option.options[unit2Option.selectedIndex].text;
+      document.getElementById(unit + '-result').style.display = 'block';
     };
   };
-};
-
-function clearValues() { 
-  document.getElementById("length-result").style.display = "none";
-  document.getElementById("weight-result").style.display = "none";
-  document.getElementById("temperature-result").style.display = "none";
-  document.getElementById("square-area-result").style.display = "none";
-  document.getElementById("cubic-area-result").style.display = "none";
-  document.getElementById("volume-result").style.display = "none";
 };
