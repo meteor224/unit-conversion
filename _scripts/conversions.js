@@ -1,59 +1,34 @@
 function unitConversion(unit) {
-  var unitValue = parseInt(document.getElementById(unit + '-amount').value);
-  var unit1Option = document.getElementById(unit + '-unit-1');
-  var unit2Option = document.getElementById(unit + '-unit-2');
-  var unit1 = unit1Option.value;
-  var unit2 = unit2Option.value;
-  var decimalPoints = parseInt(document.getElementById('decimals').value);
+  let unitValue = parseInt(document.getElementById(unit + '-amount').value);
+  let unit1Option = document.getElementById(unit + '-unit-1');
+  let unit2Option = document.getElementById(unit + '-unit-2');
+  let unit1 = unit1Option.value;
+  let unit2 = unit2Option.value;
+  let decimalPoints = parseInt(document.getElementById('decimals').value);
+  let result, unitArray, conversion
+  
   // length conversion factors to millimetres
-  var inch = 25.4;
-  var foot = 304.8;
-  var yard = 914.4;
-  var mile = 1609344;
-  var millimetre = 1;
-  var centimetre = 10;
-  var metre = 1000;
-  var kilometre = 1000000;
-  // weight conversion factors to grams
-  var ounce = 28.3495231;
-  var pound = 453.59237;
-  var stone = 6350.29318;
-  var ukTon = 1016046.91;
-  var usTon = 907184.74;
-  var gram = 1;
-  var kilo = 1000;
-  var metricTon = 1000000;
-  // square area conversion factors to millimetres
-  var acres = 40468564.2;
-  var squareMile = 25899881103.36;
-  var squareYard = 8361.2736;
-  var squareFeet = 929.0304;
-  var squareInche = 6.4516;
-  var hectare = 100000000;
-  var squareKilometre = 10000000000;
-  var squareMetre = 10000;
-  var squareCentimetre = 1;
-  // cubic area conversion factors to millimetres
-  var cubicFoot = 28316.8466;
-  var cubicYard = 764554.858;
-  var cubicMetre = 1000000;
+  const inch = 25.4, foot = 304.8, yard = 914.4, mile = 1609344, millimetre = 1, 
+    centimetre = 10, metre = 1000, kilometre = 1000000;
+  
+    // weight conversion factors to grams
+  const ounce = 28.3495231, pound = 453.59237, stone = 6350.29318, ukTon = 1016046.91, 
+    usTon = 907184.74, gram = 1, kilo = 1000, metricTon = 1000000;
+  
+    // square area conversion factors to millimetres
+  const acres = 40468564.2, squareMile = 25899881103.36, squareYard = 8361.2736, 
+    squareFeet = 929.0304, squareInche = 6.4516, hectare = 100000000, 
+    squareKilometre = 10000000000, squareMetre = 10000, squareCentimetre = 1;
+  
+    // cubic area conversion factors to millimetres
+  const cubicFoot = 28316.8466, cubicYard = 764554.858, cubicMetre = 1000000;
+  
   // volume conversion factors to millilitres
-  var ukTeaspoon = 5.91939047;
-  var usTeaspoon = 4.92892159;
-  var ukTablespoon = 17.7581714;
-  var usTablespoon = 14.7867648;
-  var ukFluidOunce = 28.4130742;
-  var usFluidOunce = 29.5735296;
-  var ukCup = 250;
-  var usCup = 236.588237;
-  var ukPint = 568.261485;
-  var usPint = 473.176473;
-  var ukQuart = 1136.52297;
-  var usQuart = 946.352946;
-  var ukGallon = 4546.09188;
-  var usGallon = 3785.41178;
-  var millilitre = 1;
-  var litre = 1000;
+  const ukTeaspoon = 5.91939047, usTeaspoon = 4.92892159, ukTablespoon = 17.7581714, 
+    usTablespoon = 14.7867648, ukFluidOunce = 28.4130742, usFluidOunce = 29.5735296, 
+    ukCup = 250, usCup = 236.588237, ukPint = 568.261485, usPint = 473.176473, 
+    ukQuart = 1136.52297, usQuart = 946.352946, ukGallon = 4546.09188, 
+    usGallon = 3785.41178, millilitre = 1, litre = 1000;
 
   if (unitValue.length == 0 || isNaN(unitValue)) {
     alert('Please enter a number');
@@ -89,12 +64,12 @@ function unitConversion(unit) {
         case 'cubic-area': unitArray=[cubicFoot, cubicYard, cubicMetre]; break;
         case 'volume': unitArray=[ukTeaspoon, usTeaspoon, ukTablespoon, usTablespoon, ukFluidOunce, usFluidOunce, ukCup, usCup, ukPint, usPint, ukQuart, usQuart, ukGallon, usGallon, millilitre, litre]; break;
         default: break;
-      };
+      }
 
       conversion = unitArray[unit1] / unitArray[unit2];
       result = (unitValue * conversion).toFixed(decimalPoints);
       document.getElementById(unit + '-result').innerHTML = unitValue + ' ' + unit1Option.options[unit1Option.selectedIndex].text + ' = ' + result + ' ' + unit2Option.options[unit2Option.selectedIndex].text;
       document.getElementById(unit + '-result').style.display = 'block';
-    };
-  };
-};
+    }
+  }
+}
